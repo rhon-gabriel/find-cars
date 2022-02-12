@@ -1,12 +1,32 @@
 import React, { useState } from "react";
+import * as actions from "../../containers/Main/redux/actions";
+import { useDispatch } from "react-redux";
 import styles from "./DropdownSelect.module.css";
 
-const DropdownSelect = ({ name, tabIndex, data}) => {
+const DropdownSelect = ({ name, tabIndex, data, error }) => {
   const [isOpen, setOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const dispatch = useDispatch();
 
-  const expand = () => setOpen(true);
-  const close = () => setOpen(false);
+  const dispatchAction = () => {
+    switch (name) {
+      case "By Manufacturer":
+        console.log("by manufacturer");
+        break;
+      case "By Model":
+        dispatch(actions.getModels());
+        break;
+      case "By Body Type":
+        console.log("by body type");
+        break;
+      default:
+        console.log(`Something went wrong`);
+    }
+  };
+
+  const close = () => {
+    setOpen(false);
+  };
 
   const selectItem = (event) => {
     const item = event.target.textContent;
@@ -15,27 +35,33 @@ const DropdownSelect = ({ name, tabIndex, data}) => {
   };
 
   return (
-    <div
-      className={styles.dropdown}
-      tabIndex={tabIndex}
-      onFocus={expand}
-      onBlur={close}
-    >
-      <div className={styles.header}>
+    <div className={styles.dropdown}>
+      <div
+        className={styles.header}
+        tabIndex={tabIndex}
+        onBlur={close}
+        onClick={() => setOpen(!isOpen)}
+      >
         {selectedItem ? data.find((item) => item === selectedItem) : name}
       </div>
       {isOpen ? (
         <div className={`${styles.content} ${isOpen && styles.open}`}>
-          {data.map((item) => (
-            <div
-              className={styles.item}
-              onClick={selectItem}
-              id={item}
-              key={item}
-            >
-              {item}
-            </div>
-          ))}
+          {error ? (
+            <button type="text" onClick={dispatchAction()}>
+              Try again
+            </button>
+          ) : (
+            data?.map((item) => (
+              <div
+                className={styles.item}
+                onClick={selectItem}
+                id={item}
+                key={item}
+              >
+                {item}
+              </div>
+            ))
+          )}
         </div>
       ) : null}
     </div>

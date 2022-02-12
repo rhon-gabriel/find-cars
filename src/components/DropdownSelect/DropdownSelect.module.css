@@ -17,6 +17,8 @@
   padding: 5px;
   border-top: 1px solid #e5e8ec;
   display: none;
+  overflow-y: scroll;
+  max-height: 250px;
 }
 
 .open {
@@ -30,4 +32,14 @@
 
 .item:hover {
   background-color: #d7dde8;
+}
+
+button {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  text-decoration: underline;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
 }
