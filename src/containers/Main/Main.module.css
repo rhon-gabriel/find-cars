@@ -22,10 +22,9 @@
 }
 
 .vehiclesContainer {
-  overflow: scroll;
-  max-height: 400px;
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
 }
 
 @media screen and (max-width: 680px) {

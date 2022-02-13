@@ -6,7 +6,7 @@ const DisplayMessage = ({ message, error }) => {
     window.location.reload(false);
   };
   return (
-    <div className={`${styles.card} ${error && styles.error}`}>
+    <div className={`${styles.card} ${error && styles.error}`} data-testid="display-message">
       <p>{message}</p>
       {error && (
         <button type="text" onClick={refreshPage}>

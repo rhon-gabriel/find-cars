@@ -11,7 +11,6 @@ export async function getModels(manufacturer) {
 }
 
 export async function getVehicles(params) {
-  console.log("params", params);
   return await axios.get("http://localhost:8080/api/vehicles", {
     params: params,
   });

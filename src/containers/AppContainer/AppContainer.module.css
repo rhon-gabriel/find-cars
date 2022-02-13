@@ -1,15 +1,21 @@
 .container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-header{
-    padding: 10px;
-    text-align: center;
-    font-size: 35px;
+header {
+  padding: 10px;
+  text-align: center;
+  font-size: 35px;
 }
 
 main {
-    flex: 1;
+  height: 100%;
+  overflow: auto;
+}
+
+footer {
+  padding: 20px;
+  font-size: 10px;
 }

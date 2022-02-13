@@ -12,6 +12,7 @@ const AppContainer = () => {
       <main>
         <Main />
       </main>
+      <footer>Rhoneil Gabriel</footer>
     </div>
   );
 };

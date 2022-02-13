@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./Main.module.css";
 import DropdownSelect from "../../components/DropdownSelect/DropdownSelect";
 import ListVehicles from "../Vehicles/ListVehicles/ListVehicles";
-import DisplayError from "../../components/DisplayError/DisplayMessage";
+import DisplayError from "../../components/DisplayMessage/DisplayMessage";
 
 const Main = () => {
   const [isOpenMake, setOpenMake] = useState(false);

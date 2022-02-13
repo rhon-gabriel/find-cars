@@ -1,23 +1,32 @@
-# Getting Started with Create React App
+# Find you perfect car
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple web app which allows user to find the perfect car based on the manufacturer and model they select. 
+Found cars will display informations about the manufacturer, model, fuel type, body type and engine capacity. 
+It is mobile and desktop-friendly.
 
-## Available Scripts
+### How to start the app
 
-In the project directory, you can run:
+Terminal 1
+1. run "npm install"
+2. run "npm start" and it should open http://localhost:3000
 
-### `npm start`
+Terminal 2
+1. run "node apiserver/server.js"
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Test
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The app, using react testing library, tests:
+- App is rendered correctl
+- Vehicles are listed inside cards and if no vehicle is found, it will display a message to the user
+- Dropdown list and disabled
 
-### `npm test`
+### Tech stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React
+- Redux
+- Redux-Saga
+- CSS module
+- Axios
 
 ### `npm run build`
 
