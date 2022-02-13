@@ -1,7 +1,14 @@
-import { GET_MODELS_START } from "./constants";
+import { GET_MODELS_START, GET_MANUFACTURERS_START } from "./constants";
 
-export function getModels() {
+export function getManufacturers() {
   return {
-    type: GET_MODELS_START
+    type: GET_MANUFACTURERS_START,
+  };
+}
+
+export function getModels(manufacturer) {
+  return {
+    type: GET_MODELS_START,
+    payload: manufacturer,
   };
 }

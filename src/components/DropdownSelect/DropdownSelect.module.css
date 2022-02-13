@@ -3,6 +3,8 @@
   border-radius: 8px;
   background-color: #ffff;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+  position: relative;
+  display: inline-block;
 }
 
 .header {
@@ -14,7 +16,6 @@
 }
 
 .content {
-  padding: 5px;
   border-top: 1px solid #e5e8ec;
   display: none;
   overflow-y: scroll;
@@ -23,6 +24,14 @@
 
 .open {
   display: block;
+  position: absolute;
+  background-color: #ffff;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.error {
+  box-shadow: 0 2px 4px rgb(238, 134, 134);
 }
 
 .item {
@@ -34,12 +43,8 @@
   background-color: #d7dde8;
 }
 
-button {
-  border: none;
-  background-color: inherit;
-  padding: 14px 28px;
-  text-decoration: underline;
-  font-size: 16px;
-  cursor: pointer;
-  width: 100%;
+.disabled {
+  pointer-events: none;
+  color: #c8caca;
+  background-color: #eef2f3;
 }

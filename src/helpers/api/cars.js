@@ -1,5 +1,11 @@
 import axios from "axios";
 
-export async function getModels() {
+export async function getManufacturers() {
   return await axios.get(`http://localhost:8080/api/makes`);
+}
+
+export async function getModels(manufacturer) {
+  return await axios.get("http://localhost:8080/api/models", {
+    params: { make: manufacturer },
+  });
 }
