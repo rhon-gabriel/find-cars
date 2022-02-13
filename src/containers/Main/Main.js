@@ -3,6 +3,8 @@ import * as actions from "./redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Main.module.css";
 import DropdownSelect from "../../components/DropdownSelect/DropdownSelect";
+import ListVehicles from "../Vehicles/ListVehicles/ListVehicles";
+import DisplayError from "../../components/DisplayError/DisplayMessage";
 
 const Main = () => {
   const [isOpenMake, setOpenMake] = useState(false);
@@ -11,9 +13,15 @@ const Main = () => {
   const [selectedModel, setSelectedModel] = useState(null);
   const [isDisabled, setDisabled] = useState(false);
   const dispatch = useDispatch();
-  const { manufacturers, models, loading, errorMake, errorModel } = useSelector(
-    (state) => state.cars
-  );
+  const {
+    manufacturers,
+    models,
+    vehicles,
+    loading,
+    errorMake,
+    errorModel,
+    errorVehicles,
+  } = useSelector((state) => state.cars);
 
   useEffect(() => {
     dispatch(actions.getManufacturers());
@@ -28,6 +36,35 @@ const Main = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedMake]);
 
+  // FETCH VEHICLES
+  useEffect(() => {
+    const params = {
+      make: selectedMake,
+      model: selectedModel,
+    };
+    selectedMake && selectedModel && dispatch(actions.getVehicles(params));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedMake, selectedModel]);
+
+  useEffect(() => {
+    errorMake && setSelectedMake(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [errorMake]);
+
+  useEffect(() => {
+    errorModel && setSelectedModel(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [errorModel]);
+
+  useEffect(() => {
+    if (errorVehicles) {
+      setSelectedMake(null);
+      setSelectedModel(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [errorVehicles]);
+
+  //Disable dropdown
   useEffect(() => {
     if (models === null || models?.length === 0 || !selectedMake || errorMake) {
       setDisabled(true);
@@ -39,7 +76,7 @@ const Main = () => {
   }, [models, selectedMake]);
 
   return (
-    <div className={styles.container}>
+    <>
       <section className={styles.columns}>
         <div className={styles.column} onClick={toggleDropdownMake}>
           <DropdownSelect
@@ -66,14 +103,26 @@ const Main = () => {
           />
         </div>
       </section>
-      {loading && <p>Loading...</p>}
-      {models &&
-        (models.length === 0 ? (
-          <p>no models for this manufacturer</p>
+      <section className={styles.vehiclesContainer}>
+        {loading && <DisplayError message={"Loading.."} />}
+        {!errorMake && !errorModel && models?.length === 0 && (
+          <DisplayError message={"No models found for this manufacturer"} />
+        )}
+        {errorMake || errorModel || errorVehicles ? (
+          <DisplayError
+            message={"Something went wrong on our server. Please try again"}
+            error
+          />
+        ) : vehicles?.length ? (
+          <ListVehicles vehicles={vehicles} />
         ) : (
-          <p>list</p>
-        ))}
-    </div>
+          models?.length > 0 &&
+          vehicles?.length === 0 && (
+            <DisplayError message={"No vehicles found for this model"} />
+          )
+        )}
+      </section>
+    </>
   );
 };
 

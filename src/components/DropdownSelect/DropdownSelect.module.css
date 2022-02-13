@@ -25,9 +25,11 @@
 .open {
   display: block;
   position: absolute;
-  background-color: #ffff;
+  background-color: #eeeeee;
   width: 100%;
   border-radius: 8px;
+  z-index: 1;
+  margin-top: 5px;
 }
 
 .error {

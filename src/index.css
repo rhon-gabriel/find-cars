@@ -1,14 +1,8 @@
 html,
 body,
-#root {
+#root, .app, .app>div {
   height: 100vh;
   font-family: "Montserrat", sans-serif;
-  background: #ffffff; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to bottom,
-    #ffffff,
-    #d7dde8
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #ffffff, #d7dde8);
+  background: #ffffff;
   color: #3f4c6b;
 }

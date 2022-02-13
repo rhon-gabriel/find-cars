@@ -9,9 +9,8 @@ const DropdownSelect = ({
   disabled,
   selectedItem,
   setSelectedItem,
-  error,
+  error
 }) => {
-
   const selectItem = (item) => {
     selectedItem === item ? setSelectedItem(null) : setSelectedItem(item);
     toggleDropdown();
@@ -23,11 +22,7 @@ const DropdownSelect = ({
         className={`${styles.header} ${disabled && styles.disabled}`}
         onClick={toggleDropdown}
       >
-        {error
-          ? "Please, Try again"
-          : selectedItem
-          ? data.find((item) => item === selectedItem)
-          : name}
+        {selectedItem ? data.find((item) => item === selectedItem) : name}
       </div>
       {isOpen ? (
         <div className={`${styles.content} ${isOpen && styles.open}`}>

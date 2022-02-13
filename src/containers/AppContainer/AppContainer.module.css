@@ -1,0 +1,15 @@
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    padding: 10px;
+    text-align: center;
+    font-size: 35px;
+}
+
+main {
+    flex: 1;
+}
