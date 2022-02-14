@@ -47,7 +47,6 @@ export function* getModelsSaga(action) {
 export function* getVehiclesSaga(action) {
   try {
     const res = yield call(getVehicles, action.payload);
-    console.log("res", res);
     yield put({
       type: GET_VEHICLES_SUCCESS,
       vehicles: res.data,
